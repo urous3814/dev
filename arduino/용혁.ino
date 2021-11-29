@@ -30,7 +30,7 @@ void loop()
     lcd.setCursor(0,0);  //lcd의 커서를 0, 설정
     lcd.print("Water, Please");  //lcd로 Water, Please 라고 출력
   }
-  else{  
+  else{  //센서에서 받아온 값이 400이하라면
     lcd.clear();  //lcd 지우기
     digitalWrite(LED_R,LOW);  //빨간불 꺼지게
     digitalWrite(LED_G,HIGH);  //초록불 들어오게
