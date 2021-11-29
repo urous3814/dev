@@ -1,4 +1,4 @@
-#include <Wire.h>
+#include <Wire.h>  //i2c연결 보조용 라이브러리
 #include<LiquidCrystal_I2C.h>. //모듈 불러오기
 
 LiquidCrystal_I2C lcd(0x27,16,2);  //0x27번 주소로 i2c접속 (16*2칸짜리)
@@ -23,14 +23,14 @@ void loop()
   Serial.println(analogRead(Sensor_pin));   //A1핀 아날로그값을 받아와서 시리얼모니터로 출력
   delay(100);  
 
-  if(analogRead(Sensor_pin) > 400){    //센서에서 받아온 값이 400이상이면?
+  if(analogRead(Sensor_pin) < 400){    //센서에서 받아온 값이 400이하라면
     lcd.clear();   //lcd지우기
     digitalWrite(LED_R,HIGH);  //빨간불 들어오게
     digitalWrite(LED_G,LOW);  //초록불 꺼지게
     lcd.setCursor(0,0);  //lcd의 커서를 0, 설정
     lcd.print("Water, Please");  //lcd로 Water, Please 라고 출력
   }
-  else{  //센서에서 받아온 값이 400이하라면
+  else{   //센서에서 받아온 값이 400이상이면? 
     lcd.clear();  //lcd 지우기
     digitalWrite(LED_R,LOW);  //빨간불 꺼지게
     digitalWrite(LED_G,HIGH);  //초록불 들어오게
