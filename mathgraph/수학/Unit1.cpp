@@ -6,17 +6,21 @@
 #include "Unit1.h"
 #include <cmath>
 #include <Algorithm>
+#include <iostream>
+#include <string>
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma link "perfgrap"
 #pragma resource "*.dfm"
 TForm1 *Form1;
 TBitmap *Mask1;
-float x, y;
+float x = 0, y;
 float expd, expj;
 float logd, logj;
-bool draw = false, autoc = false;
+float ang, multi;
+bool draw = true, autoc = false;
 int scale = 5;
+float Pi = 3.1416926;
 float PenScale = 5;
 TBitmap *Bit;
 //---------------------------------------------------------------------------
@@ -27,147 +31,146 @@ __fastcall TForm1::TForm1(TComponent* Owner)
 //---------------------------------------------------------------------------
 void __fastcall TForm1::FormShow(TObject *Sender)
 {
+    Image1->Picture->Bitmap = Bit;
 	Image1->Picture->Bitmap->Height = Image1->Height;
 	Image1->Picture->Bitmap->Width = Image1->Width;
 	Image1->Picture->Bitmap->Canvas->Pen->Color = clBlack;
-	Image1->Picture->Bitmap->Canvas->Pen->Width = 2;
-	Image1->Picture->Bitmap->Canvas->MoveTo(125,0);
-	Image1->Picture->Bitmap->Canvas->LineTo(125,250);
-	Image1->Picture->Bitmap->Canvas->MoveTo(0,125);
-	Image1->Picture->Bitmap->Canvas->LineTo(250,125);
+	Image1->Picture->Bitmap->Canvas->Pen->Width = 1;
+//	Image1->Picture->Bitmap->Canvas->MoveTo(125,0);
+//	Image1->Picture->Bitmap->Canvas->LineTo(125,250);
+//	Image1->Picture->Bitmap->Canvas->MoveTo(0,125);
+//	Image1->Picture->Bitmap->Canvas->LineTo(250,125);
+//	Image1->Picture->Bitmap->Canvas->MoveTo(0,125);
+//	Image1->Picture->Bitmap->Canvas->LineTo(250,125);
+	for(int i=0; i < 125; i+=scale)
+	{
+		Image1->Picture->Bitmap->Canvas->MoveTo(125, 125 + i);
+		Image1->Picture->Bitmap->Canvas->LineTo(125,125+scale + i);
+		Image1->Picture->Bitmap->Canvas->MoveTo(125, 125+scale + i);
+		Image1->Picture->Bitmap->Canvas->LineTo(127,125+scale + i);
+		Image1->Picture->Bitmap->Canvas->MoveTo(125, 125+scale + i);
+		Image1->Picture->Bitmap->Canvas->LineTo(123,125+scale + i);
+	}
+	for(int i=0; i < 125; i+=scale)
+	{
+		Image1->Picture->Bitmap->Canvas->MoveTo(125, 125 - i);
+		Image1->Picture->Bitmap->Canvas->LineTo(125,125+scale - i);
+		Image1->Picture->Bitmap->Canvas->MoveTo(125, 125+scale - i);
+		Image1->Picture->Bitmap->Canvas->LineTo(127,125+scale - i);
+		Image1->Picture->Bitmap->Canvas->MoveTo(125, 125+scale - i);
+		Image1->Picture->Bitmap->Canvas->LineTo(123,125+scale - i);
+	}
+    for(int i=0; i < 125; i+=scale)
+	{
+		Image1->Picture->Bitmap->Canvas->MoveTo(125 + i, 125);
+		Image1->Picture->Bitmap->Canvas->LineTo(125+scale + i, 125);
+		Image1->Picture->Bitmap->Canvas->MoveTo(125+scale + i, 125);
+		Image1->Picture->Bitmap->Canvas->LineTo(125+scale + i, 127);
+		Image1->Picture->Bitmap->Canvas->MoveTo(125+scale + i, 125);
+		Image1->Picture->Bitmap->Canvas->LineTo(125+scale + i, 123);
+	}
+    for(int i=0; i < 125; i+=scale)
+	{
+		Image1->Picture->Bitmap->Canvas->MoveTo(125 - i, 125);
+		Image1->Picture->Bitmap->Canvas->LineTo(125+scale - i, 125);
+		Image1->Picture->Bitmap->Canvas->MoveTo(125+scale - i, 125);
+		Image1->Picture->Bitmap->Canvas->LineTo(125+scale - i, 127);
+		Image1->Picture->Bitmap->Canvas->MoveTo(125+scale - i, 125);
+		Image1->Picture->Bitmap->Canvas->LineTo(125+scale - i, 123);
+	}
+
 	Image1->Picture->Bitmap->Canvas->Pen->Color = clBlue;
-//	Bit = Image1->Picture->Bitmap;
 
 }
 //---------------------------------------------------------------------------
 void __fastcall TForm1::Button1Click(TObject *Sender)
 {
+	float cola = TrackBar1->Position;
+	x = cola/100;
+	Edit12->Text = cola/100;
+	expd = Slicing(Edit1->Text);
+	expj = Slicing(Edit2->Text);
 	Edit3->Text = pow(expd, expj);
 	if(draw)
 	{
 		Dot(x, StrToFloat(Edit3->Text));
 	}
+}
 
+float __fastcall TForm1::Slicing(String Temp)
+{
+	float d[3] = {1, 1, 1};
+	if(Temp.Pos("-") == 1)
+	{
+		d[0] = -1;
+		Temp.Delete(1, 1);
+	}
+	if(Temp.Pos("x"))
+	{
+		if(Temp.SubString(1, Temp.Pos("x")-1) != "")
+			d[1] = StrToFloat(Temp.SubString(1, Temp.Pos("x")-1));
+		d[2] = x;
+	}
+	else
+	{
+		d[1] = StrToFloat(Temp);
+	}
+	return(d[0]*d[1]*d[2]);
 }
 
 void __fastcall TForm1::Button2Click(TObject *Sender)
 {
-	if(CheckBox4->Checked)
+    float cola = TrackBar1->Position;
+	x = cola/100;
+	Edit12->Text = cola/100;
+	if(CheckBox5->Checked)
 	{
-		Edit3->Text = log(logj);
-	}
-	else
-	{
-		Edit3->Text = log10(logj)/log10(logd);
-		if(draw)
+		logj = Slicing(Edit11->Text);
+		if(logj > 0)
 		{
-			Dot(x, StrToFloat(Edit3->Text));
+			Edit3->Text = log(logj);
+            if(draw)
+			{
+				Dot(x, StrToFloat(Edit3->Text));
+			}
 		}
 	}
+	else
+	{
+		logd = Slicing(Edit10->Text);
+		logj = Slicing(Edit11->Text);
+		if(logj > 0 && logd > 0 && logd != 1)
+		{
+			Edit3->Text = log10(logj)/log10(logd);
+			if(draw)
+			{
+				Dot(x, StrToFloat(Edit3->Text));
+			}
+		}
+	}
+
 }
 
-//---------------------------------------------------------------------------
-void __fastcall TForm1::CheckBox1Click(TObject *Sender)
-{
-	if(CheckBox1->Checked)
-	{
-		Edit2->Text = "x";
-		Edit2->ReadOnly = true;
-		expj = x;
-	}
-	else
-	{
-		Edit2->Text = "";
-		Edit2->ReadOnly = false;
-	}
-}
-//---------------------------------------------------------------------------
-void __fastcall TForm1::CheckBox4Click(TObject *Sender)
-{
-	if(CheckBox4->Checked)
-	{
-		Edit11->Text = "x";
-		Edit11->ReadOnly = true;
-        logj = x;
-	}
-	else
-	{
-		Edit11->Text = "";
-		Edit11->ReadOnly = false;
-	}
-}
-//---------------------------------------------------------------------------
-void __fastcall TForm1::CheckBox3Click(TObject *Sender)
-{
-	if(CheckBox3->Checked)
-	{
-		Edit10->Text = "x";
-		Edit10->ReadOnly = true;
-        logd = x;
-	}
-	else
-	{
-		Edit10->Text = "";
-		Edit10->ReadOnly = false;
-	}
-}
 //---------------------------------------------------------------------------
 void __fastcall TForm1::TrackBar1Change(TObject *Sender)
 {
 	float cola = TrackBar1->Position;
-	x = cola/10;
-	Edit12->Text = cola/10;
-	if(!autoc)
+	x = cola/100;
+	Edit12->Text = cola/100;
+    if(ComboBox2->ItemIndex == 1)
 	{
-		if(CheckBox3->Checked && x != 1 && x != 0)
-		{
-			logd = x;
-		}
-		if(CheckBox4->Checked && x > 0)
-		{
-			logj = x;
-		}
-		if(CheckBox6->Checked)
-		{
-			expd = x;
-		}
-		if(CheckBox1->Checked)
-		{
-			expj = x;
-		}
-	}
-
-	if(ComboBox2->ItemIndex == 1)
-	{
-		Edit3->Text = pow(expd, expj);
+		Button1Click(Sender);
 	}
 	else if(ComboBox2->ItemIndex == 2)
 	{
-        if(CheckBox4->Checked)
-		{
-			Edit3->Text = log(logj);
-		}
-		else
-		{
-			Edit3->Text = log10(logj)/log10(logd);
-		}
+		Button2Click(Sender);
 	}
-    if(draw)
+	else if(ComboBox2->ItemIndex == 3)
 	{
-		if(CheckBox4->Checked && x > 0)
-		{
-			Dot(x, StrToFloat(Edit3->Text));
-		}
-		else if(CheckBox3->Checked && x != 1 && x != 0)
-		{
-			Dot(x, StrToFloat(Edit3->Text));
-		}
-		else if(ComboBox2->ItemIndex == 1)
-		{
-            Dot(x, StrToFloat(Edit3->Text));
-        }
-
+		Button7Click(Sender);
 	}
+
+	
 }
 //---------------------------------------------------------------------------
 void __fastcall TForm1::TrackBar2Change(TObject *Sender)
@@ -192,43 +195,27 @@ void __fastcall TForm1::CheckBox5Click(TObject *Sender)
 //---------------------------------------------------------------------------
 void __fastcall TForm1::Edit4Exit(TObject *Sender)
 {
-	TrackBar1->Min = StrToFloat(Edit4->Text)*10;
+	TrackBar1->Min = StrToFloat(Edit4->Text)*100;
 }
 //---------------------------------------------------------------------------
 void __fastcall TForm1::Edit5Exit(TObject *Sender)
 {
-	TrackBar1->Max = StrToFloat(Edit5->Text)*10;
+	TrackBar1->Max = StrToFloat(Edit5->Text)*100;
 }
 //---------------------------------------------------------------------------
 void __fastcall TForm1::Edit8Exit(TObject *Sender)
 {
-	TrackBar2->Min = StrToFloat(Edit8->Text)*10;
+	TrackBar2->Min = StrToFloat(Edit8->Text)*100;
 }
 //---------------------------------------------------------------------------
 void __fastcall TForm1::Edit9Exit(TObject *Sender)
 {
-	TrackBar2->Max = StrToFloat(Edit9->Text)*10;
+	TrackBar2->Max = StrToFloat(Edit9->Text)*100;
 }
 //---------------------------------------------------------------------------
 void __fastcall TForm1::Edit12Exit(TObject *Sender)
 {
-	TrackBar1->Position = StrToFloat(Edit12->Text)*10;
-    if(CheckBox1->Checked)
-	{
-		expj = StrToFloat(Edit12->Text);
-	}
-	else if(CheckBox6->Checked)
-	{
-		expd = StrToFloat(Edit12->Text);
-	}
-    if(CheckBox2->Checked)
-	{
-		logd = StrToFloat(Edit12->Text);
-	}
-	else if(CheckBox3->Checked)
-	{
-		expj = StrToFloat(Edit12->Text);
-	}
+	TrackBar1->Position = StrToFloat(Edit12->Text)*100;
 }
 //---------------------------------------------------------------------------
 void __fastcall TForm1::Edit13Exit(TObject *Sender)
@@ -251,41 +238,17 @@ void __fastcall TForm1::Dot(float i, float j)
 	Image1->Picture->Bitmap->Canvas->LineTo(i+0.01,j+0.01);
 
 }
-void __fastcall TForm1::CheckBox6Click(TObject *Sender)
-{
-	if(CheckBox6->Checked)
-	{
-		Edit1->Text = "x";
-		Edit1->ReadOnly = true;
-		expd = x;
-	}
-	else
-	{
-		Edit1->Text = "";
-		Edit1->ReadOnly = false;
-	}
-}
-//---------------------------------------------------------------------------
 
 void __fastcall TForm1::Button3Click(TObject *Sender)
 {
-    ComboBox2->ItemIndex = 0;
+	ComboBox2->ItemIndex = 0;
 	autoc = true;
-	for (float i = TrackBar1->Min/10; i <= TrackBar1->Max/10; i+=0.01)
+	for (float i = TrackBar1->Min/100; i <= TrackBar1->Max/100; i+=0.01)
 	{
-        if(CheckBox6->Checked)
-	{
-		expd = i;
-		}
-		if(CheckBox1->Checked)
-		{
-			expj = i;
-		}
-		TrackBar1->Position = i*10;
-		Edit3->Text = pow(expd, expj);
-        Dot(i, StrToFloat(Edit3->Text));
+		TrackBar1->Position = i*100;
+		Button1Click(Sender);
 	}
-    autoc = false;
+	autoc = false;
 }
 //---------------------------------------------------------------------------
 
@@ -293,62 +256,20 @@ void __fastcall TForm1::Button4Click(TObject *Sender)
 {
 	ComboBox2->ItemIndex = 0;
 	autoc = true;
-	for (float i = TrackBar1->Min/10; i <= TrackBar1->Max/10; i+=0.01)
+	for (float i = TrackBar1->Min/100; i <= TrackBar1->Max/100; i+=0.01)
 	{
-		if(i!=0)
-		{
-			if(CheckBox3->Checked && i != 1 && i != 0)
-			{
-				logd = i;
-			}
-			if(CheckBox4->Checked && i > 0)
-			{
-				logj = i;
-			}
-			TrackBar1->Position = i*10;
-			Edit3->Text = log(logj)/log(logd);
-			if(CheckBox4->Checked && x > 0)
-			{
-				Dot(x, StrToFloat(Edit3->Text));
-			}
-			else if(CheckBox3->Checked && x != 1 && x != 0)
-			{
-				Dot(x, StrToFloat(Edit3->Text));
-			}
-		}
+		TrackBar1->Position = i*100;
+		Button2Click(Sender);
+
 	}
     autoc = false;
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::Edit1Exit(TObject *Sender)
-{
-	if(Edit1->Text != "x")
-		expd = StrToFloat(Edit1->Text);
-}
-//---------------------------------------------------------------------------
-
-void __fastcall TForm1::Edit2Exit(TObject *Sender)
-{
-	if(Edit2->Text != "x")
-		expj = StrToFloat(Edit2->Text);
-}
-//---------------------------------------------------------------------------
 
 
-void __fastcall TForm1::Edit10Exit(TObject *Sender)
-{
-	if(Edit10->Text != "x" || Edit10->Text != "e")
-		logd = StrToFloat(Edit10->Text);
-}
-//---------------------------------------------------------------------------
 
-void __fastcall TForm1::Edit11Exit(TObject *Sender)
-{
-	if(Edit10->Text != "x")
-		logj = StrToFloat(Edit11->Text);
-}
-//---------------------------------------------------------------------------
+
 
 
 void __fastcall TForm1::Button6Click(TObject *Sender)
@@ -358,27 +279,8 @@ void __fastcall TForm1::Button6Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TForm1::Button5Click(TObject *Sender)
-{
-	Image1->Picture->Bitmap = Bit;
-    Image1->Picture->Bitmap->Height = Image1->Height;
-	Image1->Picture->Bitmap->Width = Image1->Width;
-	Image1->Picture->Bitmap->Canvas->Pen->Color = clBlack;
-	Image1->Picture->Bitmap->Canvas->Pen->Width = 2;
-	Image1->Picture->Bitmap->Canvas->MoveTo(125,0);
-	Image1->Picture->Bitmap->Canvas->LineTo(125,250);
-	Image1->Picture->Bitmap->Canvas->MoveTo(0,125);
-	Image1->Picture->Bitmap->Canvas->LineTo(250,125);
-	Image1->Picture->Bitmap->Canvas->Pen->Color = clBlue;
-}
-//---------------------------------------------------------------------------
 
 
-void __fastcall TForm1::Edit14Change(TObject *Sender)
-{
-	scale = StrToInt(Edit14->Text);
-}
-//---------------------------------------------------------------------------
 
 void __fastcall TForm1::ComboBox1Change(TObject *Sender)
 {
@@ -412,6 +314,52 @@ void __fastcall TForm1::ColorBox1Change(TObject *Sender)
 void __fastcall TForm1::Edit15Change(TObject *Sender)
 {
 	PenScale = StrToInt(Edit15->Text);
+}
+//---------------------------------------------------------------------------
+
+
+
+
+
+
+void __fastcall TForm1::Button7Click(TObject *Sender)
+{
+	float cola = TrackBar1->Position;
+	x = cola/100;
+	Edit12->Text = cola/100;
+	ang = Slicing(Edit16->Text);
+	multi = Slicing(Edit17->Text);
+	if(ComboBox3->ItemIndex == 0)
+		Edit3->Text = multi*sin( ang * Pi / 180);
+	else if(ComboBox3->ItemIndex == 1)
+		Edit3->Text = multi*cos( ang * Pi / 180);
+	else
+		Edit3->Text = multi*tan( ang * Pi / 180);
+	if(draw)
+	{
+		Dot(x, StrToFloat(Edit3->Text));
+	}
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Button8Click(TObject *Sender)
+{
+	ComboBox2->ItemIndex = 0;
+	autoc = true;
+	for (float i = TrackBar1->Min/100; i <= TrackBar1->Max/100; i+=0.01)
+	{
+		TrackBar1->Position = i*100;
+		Button7Click(Sender);
+	}
+	autoc = false;
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm1::Edit14Exit(TObject *Sender)
+{
+    scale = StrToInt(Edit14->Text);
+	FormShow(Sender);
 }
 //---------------------------------------------------------------------------
 
