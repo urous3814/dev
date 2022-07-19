@@ -1,0 +1,244 @@
+object blue_v2: Tblue_v2
+  Left = 0
+  Top = 0
+  BorderIcons = [biSystemMenu]
+  Caption = 'BLUE v2'
+  ClientHeight = 224
+  ClientWidth = 712
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  object GroupBox1: TGroupBox
+    Position.X = 8.000000000000000000
+    Size.Width = 153.000000000000000000
+    Size.Height = 193.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'Bluetooth'
+    TabOrder = 0
+    object Button1: TButton
+      Position.X = 8.000000000000000000
+      Position.Y = 16.000000000000000000
+      Size.Width = 137.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Text = 'Discover device'
+      OnClick = Button1Click
+    end
+    object Button2: TButton
+      Position.X = 8.000000000000000000
+      Position.Y = 48.000000000000000000
+      Size.Width = 137.000000000000000000
+      Size.Height = 30.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Text = 'Pair'
+      OnClick = Button2Click
+    end
+    object ListBox1: TListBox
+      Position.X = 8.000000000000000000
+      Position.Y = 80.000000000000000000
+      Size.Width = 137.000000000000000000
+      Size.Height = 81.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      DisableFocusEffect = True
+      DefaultItemStyles.ItemStyle = ''
+      DefaultItemStyles.GroupHeaderStyle = ''
+      DefaultItemStyles.GroupFooterStyle = ''
+      Viewport.Width = 133.000000000000000000
+      Viewport.Height = 77.000000000000000000
+    end
+    object Button3: TButton
+      StyledSettings = [Size, Style, FontColor]
+      Position.X = 8.000000000000000000
+      Position.Y = 161.000000000000000000
+      Size.Width = 113.000000000000000000
+      Size.Height = 24.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 10
+      Text = 'ON'
+      TextSettings.Font.Family = 'Segment14'
+      OnClick = Button8Click
+    end
+    object Button5: TButton
+      StyledSettings = [Size, FontColor]
+      Position.X = 120.000000000000000000
+      Position.Y = 160.000000000000000000
+      Size.Width = 25.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 11
+      Text = 'P'
+      TextSettings.Font.Family = 'Segment14'
+      TextSettings.Font.StyleExt = {00070000000000000004000000}
+      OnClick = Button5Click
+    end
+  end
+  object Timer1: TTimer
+    Enabled = False
+    Interval = 0
+    OnTimer = Timer1Timer
+    Left = 160
+    Top = 56
+  end
+  object ProgressBar1: TProgressBar
+    Max = 50.000000000000000000
+    Min = 5.000000000000000000
+    Orientation = Horizontal
+    Position.X = 11.000000000000000000
+    Position.Y = 195.000000000000000000
+    Size.Width = 398.000000000000000000
+    Size.Height = 20.000000000000000000
+    Size.PlatformDefault = False
+    Value = 10.000000000000000000
+  end
+  object GroupBox2: TGroupBox
+    Position.X = 160.000000000000000000
+    Size.Width = 249.000000000000000000
+    Size.Height = 193.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'send'
+    TabOrder = 18
+    object Memo1: TMemo
+      Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+      DataDetectorTypes = []
+      Position.X = 8.000000000000000000
+      Position.Y = 16.000000000000000000
+      Size.Width = 233.000000000000000000
+      Size.Height = 137.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 17
+      Viewport.Width = 229.000000000000000000
+      Viewport.Height = 133.000000000000000000
+    end
+    object Edit1: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 21
+      Position.X = 8.000000000000000000
+      Position.Y = 160.000000000000000000
+      Size.Width = 169.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object Button4: TButton
+      StyledSettings = [Size, Style, FontColor]
+      Position.X = 176.000000000000000000
+      Position.Y = 160.000000000000000000
+      Size.Width = 65.000000000000000000
+      Size.Height = 23.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 9
+      Text = 'SEND'
+      TextSettings.Font.Family = 'Segment14'
+      OnClick = Button4Click
+    end
+  end
+  object Timer2: TTimer
+    Enabled = False
+    Interval = 0
+    OnTimer = Timer2Timer
+    Left = 160
+    Top = 104
+  end
+  object Button6: TButton
+    StyledSettings = [Size, FontColor]
+    Position.X = 416.000000000000000000
+    Position.Y = 8.000000000000000000
+    Size.Width = 25.000000000000000000
+    Size.Height = 209.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 22
+    Text = '>'
+    TextSettings.Font.Family = 'Segoe MDL2 Assets'
+    TextSettings.Font.StyleExt = {00070000000200000004000000}
+    OnClick = Button6Click
+  end
+  object GroupBox3: TGroupBox
+    Position.X = 456.000000000000000000
+    Position.Y = 8.000000000000000000
+    Size.Width = 249.000000000000000000
+    Size.Height = 209.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'client'
+    TabOrder = 23
+    object Edit2: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 0
+      Position.X = 32.000000000000000000
+      Position.Y = 16.000000000000000000
+      Size.Width = 209.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object Label1: TLabel
+      StyledSettings = [Size, Style, FontColor]
+      Position.X = 8.000000000000000000
+      Position.Y = 16.000000000000000000
+      Size.Width = 120.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Family = 'Segment14'
+      Text = 'IP'
+      TabOrder = 2
+    end
+    object Label2: TLabel
+      StyledSettings = [Size, Style, FontColor]
+      Position.X = 8.000000000000000000
+      Position.Y = 40.000000000000000000
+      Size.Width = 120.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Family = 'Segment14'
+      Text = 'PORT'
+      TabOrder = 1
+    end
+    object Edit3: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 3
+      Position.X = 40.000000000000000000
+      Position.Y = 40.000000000000000000
+      Size.Width = 201.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object Button7: TButton
+      Position.X = 72.000000000000000000
+      Position.Y = 64.000000000000000000
+      TabOrder = 4
+      Text = #49436#48260' '#50672#44208
+      OnClick = Button7Click
+    end
+    object Button10: TButton
+      Position.X = 72.000000000000000000
+      Position.Y = 96.000000000000000000
+      TabOrder = 5
+      Text = #51204#49569#54616#44592
+      OnClick = Button10Click
+    end
+  end
+  object Button11: TButton
+    Position.X = 528.000000000000000000
+    Position.Y = 176.000000000000000000
+    TabOrder = 28
+    Text = 'Button11'
+    OnClick = Button11Click
+  end
+  object blue: TBluetooth
+    Enabled = False
+    OnDiscoveryEnd = blueDiscoveryEnd
+    Left = 160
+    Top = 24
+  end
+  object IdTCPClient1: TIdTCPClient
+    OnConnected = IdTCPClient1Connected
+    ConnectTimeout = 0
+    IPVersion = Id_IPv4
+    Port = 0
+    ReadTimeout = -1
+    Left = 160
+    Top = 152
+  end
+end

@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>1899-12-30 00:00:00.000.984,=C:\Users\zzaaz\OneDrive\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.862,=C:\Users\zzaaz\OneDrive\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.035,=C:\Users\zzaaz\OneDrive\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.719,=C:\Users\zzaaz\OneDrive\Documents\Embarcadero\Studio\Projects\Unit3.cpp</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.989,=C:\Users\zzaaz\OneDrive\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.916,=C:\Users\zzaaz\OneDrive\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.716,C:\Users\zzaaz\OneDrive\Documents\Embarcadero\Studio\Projects\Project1.cbproj=C:\Users\zzaaz\OneDrive\Documents\Embarcadero\Studio\Projects\Project1.cbproj</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.383,C:\Users\zzaaz\Desktop\RAD\보급형 BLUE v2.0\Unit3.h=C:\Users\zzaaz\OneDrive\Documents\Embarcadero\Studio\Projects\Unit3.h</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.885,C:\Users\zzaaz\OneDrive\Documents\Embarcadero\Studio\Projects\Unit1.h=C:\securety\Unit1.h</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.902,=C:\Users\zzaaz\OneDrive\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.308,=C:\Users\zzaaz\OneDrive\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.793,=C:\Users\zzaaz\OneDrive\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.876,=C:\Users\zzaaz\OneDrive\Documents\Embarcadero\Studio\Projects\Unit2.cpp</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.019,=C:\Users\zzaaz\OneDrive\Documents\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.439,=C:\Users\zzaaz\OneDrive\Documents\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.278,=C:\Users\zzaaz\OneDrive\Documents\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.383,C:\Users\zzaaz\Desktop\RAD\보급형 BLUE v2.0\Unit3.cpp=C:\Users\zzaaz\OneDrive\Documents\Embarcadero\Studio\Projects\Unit3.cpp</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.885,C:\Users\zzaaz\OneDrive\Documents\Embarcadero\Studio\Projects\Unit1.cpp=C:\securety\Unit1.cpp</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.695,=C:\Users\zzaaz\OneDrive\Documents\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.885,C:\Users\zzaaz\OneDrive\Documents\Embarcadero\Studio\Projects\Unit1.fmx=C:\securety\Unit1.fmx</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.460,C:\Users\zzaaz\Desktop\RAD\보급형 BLUE v2.0\Project1.cbproj=C:\Users\zzaaz\OneDrive\Documents\Embarcadero\Studio\Projects\Project1.cbproj</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.027,=C:\Users\zzaaz\OneDrive\Documents\Embarcadero\Studio\Projects\Unit2.cpp</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.748,=C:\Users\zzaaz\OneDrive\Documents\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.168,C:\Users\zzaaz\Desktop\RAD\보급형 BLUE v2.0\Project1PCH1.h=C:\Users\zzaaz\OneDrive\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>1899-12-30 00:00:00.000.383,C:\Users\zzaaz\Desktop\RAD\보급형 BLUE v2.0\Unit3.fmx=C:\Users\zzaaz\OneDrive\Documents\Embarcadero\Studio\Projects\Unit3.fmx</Transaction>
+  </Transactions>
+	<ActiveMobileDevice>
+		<P고고씽TV의MacBookPro iOSDevice32="_iosdevice_60878e68e8cea968d14b4061b1690867b20ab759" iOSDevice64="_iosdevice_60878e68e8cea968d14b4061b1690867b20ab759"/>  <NoProfile Android="spice"/>
+  </ActiveMobileDevice>
+</BorlandProject>
